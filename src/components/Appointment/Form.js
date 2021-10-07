@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
-import { action } from "@storybook/addon-actions/dist/preview";
 
 export default function Form(props) {
 
