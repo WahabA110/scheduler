@@ -8,6 +8,7 @@ import Empty from "./Empty";
 import Form from "./Form";
 import Status from "./Status";
 import Confirm from "./Confirm";
+import Error from "./Error";
 
 import useVisualMode from "hooks/useVisualMode";
 
@@ -15,7 +16,6 @@ import useVisualMode from "hooks/useVisualMode";
 export default function Appointment(props) {
 
   const { id, interview, interviewers, bookInterview, cancelInterview } = props;
-
   
 
   const EMPTY = "EMPTY";
@@ -45,15 +45,23 @@ export default function Appointment(props) {
     .then(() => {
       transition(SHOW)
     })
+    .catch((err) => {
+      console.log("error:", err)
+      transition(ERROR_SAVE, true)
+    })
   }
 
   function onDelete() {
 
-    transition(DELETE)
+    transition(DELETE, true)
 
     cancelInterview(id)
     .then(() => {
       transition(EMPTY)
+    })
+    .catch((err) => {
+      console.log("error:", err)
+      transition(ERROR_DELETE, true)
     })
   }
 
@@ -67,6 +75,8 @@ export default function Appointment(props) {
       {mode === DELETE && <Status message={"Deleting"} />}
       {mode === CONFIRM && <Confirm message={"Are you sure you would like to delete?"} onConfirm={onDelete} onCancel={back}/>}
       {mode === EDIT && <Form name={interview.student} interviewer={interview.interviewer.id} interviewers={interviewers} onCancel={back} onSave={onSave} />}
+      {mode === ERROR_SAVE && <Error message={"Could not create appointment"} onClose={back} />}
+      {mode === ERROR_DELETE && <Error message={"Could not cancel appointment"} onClose={back} />}
     </article>
   );
 
