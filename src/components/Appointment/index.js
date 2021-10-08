@@ -39,31 +39,31 @@ export default function Appointment(props) {
       interviewer
     };
 
-    transition(SAVE)
+    transition(SAVE);
 
     bookInterview(id, interview)
     .then(() => {
-      transition(SHOW)
+      transition(SHOW);
     })
     .catch((err) => {
-      console.log("error:", err)
-      transition(ERROR_SAVE, true)
-    })
-  }
+      console.log("error: ", err);
+      transition(ERROR_SAVE, true);
+    });
+  };
 
   function onDelete() {
 
-    transition(DELETE, true)
+    transition(DELETE, true);
 
     cancelInterview(id)
     .then(() => {
-      transition(EMPTY)
+      transition(EMPTY);
     })
     .catch((err) => {
-      console.log("error:", err)
-      transition(ERROR_DELETE, true)
-    })
-  }
+      console.log("error: ", err);
+      transition(ERROR_DELETE, true);
+    });
+  };
 
   return (
     <article className="appointment">

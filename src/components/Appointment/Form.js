@@ -11,13 +11,13 @@ export default function Form(props) {
   const [ error, setError ] = useState("");
 
   const reset = () => {
-    setStudentName("")
-    setInterviewerId(null)
+    setStudentName("");
+    setInterviewerId(null);
   }
 
   const cancel = () => {
-    reset()
-    onCancel()
+    reset();
+    onCancel();
   }
 
   function validate() {
@@ -31,7 +31,7 @@ export default function Form(props) {
       return;
     }
   
-    setError("")
+    setError("");
     onSave(StudentName, InterviewerId);
   }  
 

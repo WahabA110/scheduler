@@ -5,7 +5,7 @@ export default function DayList(props) {
 
   const { days, day, setDay } = props;
 
-  const parsedDays = days.map(eachDay => <DayListItem key={eachDay.id} name={eachDay.name} setDay={setDay} spots={eachDay.spots} selected={day === eachDay.name} />)
+  const parsedDays = days.map(eachDay => <DayListItem key={eachDay.id} name={eachDay.name} setDay={setDay} spots={eachDay.spots} selected={day === eachDay.name} />);
 
   return (
     <ul>

@@ -29,8 +29,8 @@ export default function Application(props) {
 
     return (
       <Appointment key={eachAppointment.id} {...eachAppointment} interview={interview} interviewers={dailyInterviewers} cancelInterview={cancelInterview} bookInterview={bookInterview} />
-    )
-  })
+    );
+  });
 
   return (
     <main className="layout">

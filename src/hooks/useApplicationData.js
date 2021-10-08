@@ -8,7 +8,7 @@ export function useApplicationData() {
     days: [],
     appointments: [],
     interviewers: {}
-  })
+  });
 
   function updateSpots(appointmentId, newAppointments) {
 
@@ -20,7 +20,7 @@ export function useApplicationData() {
     const updatedDay = state.days[updatedDayIndex]
     // figure out which appointments belong to the day
 
-    const appointmentIdsOnDay = updatedDay.appointments
+    const appointmentIdsOnDay = updatedDay.appointments;
 
     const appointmentsOnDay = appointmentIdsOnDay.map((appointmentId) => {
 
@@ -62,7 +62,7 @@ export function useApplicationData() {
 
     return axios.put(`http://localhost:8001/api/appointments/${appointmentId}`, {interview})
     .then(() => {
-      const newDays = updateSpots(appointmentId, newAppointments)
+      const newDays = updateSpots(appointmentId, newAppointments);
       setState({...state, appointments: newAppointments, days: newDays});
     })
   } 
@@ -74,16 +74,16 @@ export function useApplicationData() {
     const appointment = {
       ...state.appointments[appointmentId],
       interview: null
-    }
+    };
 
     const newAppointments = {
       ...state.appointments,
       [appointmentId]: appointment
-    }
+    };
 
     return axios.delete(`http://localhost:8001/api/appointments/${appointmentId}`)
     .then(() => {
-      const newDays = updateSpots(appointmentId, newAppointments)
+      const newDays = updateSpots(appointmentId, newAppointments);
       setState({...state, appointments: newAppointments, days: newDays});
     })
   }
@@ -100,7 +100,7 @@ export function useApplicationData() {
       axios.get('http://localhost:8001/api/appointments'),
       axios.get('http://localhost:8001/api/interviewers')
     ]).then((all) => {
-      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
+      setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
   }, []);
 
